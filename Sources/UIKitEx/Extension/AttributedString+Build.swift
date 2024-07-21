@@ -9,13 +9,13 @@ import UIKit
 
 @available(iOS 15.0, *)
 extension AttributedString {
-    static func build(_ build: (inout AttributedString) -> Void) -> AttributedString {
+    public static func build(_ build: (inout AttributedString) -> Void) -> AttributedString {
         var attributedString = AttributedString()
         build(&attributedString)
         return attributedString
     }
     
-    static func build(_ string: String, _ build: (inout AttributedString) -> Void) -> AttributedString {
+    public static func build(_ string: String, _ build: (inout AttributedString) -> Void) -> AttributedString {
         var attributedString = AttributedString(string)
         build(&attributedString)
         return attributedString

@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImage {
-    func resized(fitInto size: CGSize) -> UIImage? {
+    public func resized(fitInto size: CGSize) -> UIImage? {
         let scale = self.size.aspectFitRatio(fitInside: size)
         let targetSize = CGSize(
             width: self.size.width * scale,
@@ -24,7 +24,7 @@ extension UIImage {
         return resizedImage
     }
     
-    func resized(fillOver size: CGSize) -> UIImage? {
+    public func resized(fillOver size: CGSize) -> UIImage? {
         let scale = self.size.aspectFillRatio(fillInside: size)
         let targetSize = CGSize(
             width: self.size.width * scale,
