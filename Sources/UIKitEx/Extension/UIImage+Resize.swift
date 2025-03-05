@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImage {
-    public func resized(fitInto size: CGSize) -> UIImage? {
+    public func resized(fitInto size: CGSize, interpolationQuality: CGInterpolationQuality = .default) -> UIImage? {
         let scale = self.size.aspectFitRatio(fitInside: size)
         let targetSize = CGSize(
             width: self.size.width * scale,
@@ -16,6 +16,9 @@ extension UIImage {
         )
         
         UIGraphicsBeginImageContextWithOptions(targetSize, false, 0.0)
+        if let context = UIGraphicsGetCurrentContext() {
+            context.interpolationQuality = interpolationQuality
+        }
         self.draw(in: CGRect(origin: .zero, size: targetSize))
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
         
@@ -24,7 +27,7 @@ extension UIImage {
         return resizedImage
     }
     
-    public func resized(fillOver size: CGSize) -> UIImage? {
+    public func resized(fillOver size: CGSize, interpolationQuality: CGInterpolationQuality = .default) -> UIImage? {
         let scale = self.size.aspectFillRatio(fillInside: size)
         let targetSize = CGSize(
             width: self.size.width * scale,
@@ -32,6 +35,9 @@ extension UIImage {
         )
         
         UIGraphicsBeginImageContextWithOptions(targetSize, false, 0.0)
+        if let context = UIGraphicsGetCurrentContext() {
+            context.interpolationQuality = interpolationQuality
+        }
         self.draw(in: CGRect(origin: .zero, size: targetSize))
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
         
