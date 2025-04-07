@@ -1,4 +1,0 @@
-module UIKitEx {
-header "UIKitEx-Swift.h"
-export *
-}
